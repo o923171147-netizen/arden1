@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LABUBU x Gen Z 台灣新世代消費者研究專題報告</title>
+  
+  <!-- Fonts: Fredoka (Playful/Bubble), Plus Jakarta Sans (Energetic), Noto Sans TC (Traditional Chinese) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome Icons for Playful UI Elements -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Chart.js for Interactive Saturated Data Visualization -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="candy-pop-theme">
+  
+  <!-- Page Loader Animation -->
+  <div class="loader-wrapper" id="page-loader">
+    <div class="loader-content">
+      <div class="loader-avatar-bounce">🔥</div>
+      <h2 class="loader-title">LABUBU x GEN Z</h2>
+      <p class="loader-subtitle">正在加載繽紛潮流世界...</p>
+      <div class="loader-bar-container">
+        <div class="loader-bar"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="app-container">
+    
+    <!-- Sidebar Navigation - Neo-brutalism Pop Style -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div class="logo-area">
+          <div class="avatar-badge">LABUBU</div>
+          <h1 class="logo-title">THE MONSTERS</h1>
+        </div>
+        <p class="logo-sub">GEN Z TAIWAN STUDY</p>
+      </div>
+      
+      <nav class="nav-menu">
+        <button class="nav-item active" data-target="pane-cover">
+          <span class="nav-icon"><i class="fa-solid fa-fire-flame-curved"></i></span>
+          <span class="nav-label">專題首頁 Cover</span>
+        </button>
+        <button class="nav-item" data-target="pane-persona">
+          <span class="nav-icon"><i class="fa-solid fa-users"></i></span>
+          <span class="nav-label">Z世代畫像 Persona</span>
+        </button>
+        <button class="nav-item" data-target="pane-charm">
+          <span class="nav-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></span>
+          <span class="nav-label">品牌魅力 Charm</span>
+        </button>
+        <button class="nav-item" data-target="pane-charts">
+          <span class="nav-icon"><i class="fa-solid fa-chart-pie"></i></span>
+          <span class="nav-label">數據洞察 Trends</span>
+        </button>
+        <button class="nav-item" data-target="pane-videos">
+          <span class="nav-icon"><i class="fa-solid fa-circle-play"></i></span>
+          <span class="nav-label">精采廣告片 Video</span>
+        </button>
+        <button class="nav-item" data-target="pane-pdf">
+          <span class="nav-icon"><i class="fa-solid fa-file-pdf"></i></span>
+          <span class="nav-label">報告 PDF View</span>
+        </button>
+        <button class="nav-item" data-target="pane-strategy">
+          <span class="nav-icon"><i class="fa-solid fa-rocket"></i></span>
+          <span class="nav-label">行銷策略 Channel</span>
+        </button>
+        <button class="nav-item" data-target="pane-interactive">
+          <span class="nav-icon"><i class="fa-solid fa-comments"></i></span>
+          <span class="nav-label">互動工作坊 Hub</span>
+        </button>
+        <button class="nav-item" data-target="pane-timeline">
+          <span class="nav-icon"><i class="fa-solid fa-calendar-days"></i></span>
+          <span class="nav-label">執行時程 Timeline</span>
+        </button>
+      </nav>
+      
+      <div class="sidebar-footer">
+        <div class="collab-box">
+          <div class="collab-badge">2026 期末專題</div>
+          <span class="collab-author">台灣新世代行銷小組</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Panel Area -->
+    <main class="main-content">
+      
+      <!-- Top Dynamic Header -->
+      <header class="top-bar">
+        <div class="header-left">
+          <button class="menu-toggle-btn" id="mobile-menu-btn">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+          <div class="topic-indicator">
+            <span class="topic-dot"></span>
+            <span class="topic-text" id="current-pane-title">專題首頁 Cover</span>
+          </div>
+        </div>
+        
+        <div class="header-right">
+          <!-- Theme Switcher with high contrast toggle effect -->
+          <button id="theme-toggle" class="theme-btn" title="切換主題風格">
+            <span class="theme-btn-icon"><i class="fa-solid fa-droplet"></i></span>
+            <span class="theme-btn-text">糖果 Pop</span>
+          </button>
+          
+          <div class="online-pill">
+            <span class="pulse-ring"></span>
+            <span class="online-label"><i class="fa-solid fa-circle"></i> 熱烈討論中</span>
+          </div>
+        </div>
+      </header>
+
+      <!-- Scrollable Window containing the panes -->
+      <div class="panes-container">
+        
+        <!-- PANE 0: Cover (Hero landing) -->
+        <section class="pane active" id="pane-cover">
+          <div class="cover-hero">
+            <div class="hero-content">
+              <div class="tagline-badge">🔥 台灣新世代行銷大賽 - 第一名提案</div>
+              <h1 class="hero-headline">
+                解鎖 Z 世代的<br>
+                <span class="pop-accent-text">情緒經濟學！</span>
+              </h1>
+              <p class="hero-para">
+                以 POP MART 旗下最火爆 IP ── <strong class="sparkle-highlight">LABUBU</strong> 玩具吊飾為核心，洞察台灣 Gen Z 在社群碎片化時代的情感投射與消費美學。
+              </p>
+              
+              <div class="hero-stats-grid">
+                <div class="stat-bubble bubble-pink">
+                  <span class="stat-num">97%</span>
+                  <span class="stat-label">Threads 滲透率</span>
+                </div>
+                <div class="stat-bubble bubble-yellow">
+                  <span class="stat-num">NT$450+</span>
+                  <span class="stat-label">療癒系消費單價</span>
+                </div>
+                <div class="stat-bubble bubble-cyan">
+                  <span class="stat-num">1.8M+</span>
+                  <span class="stat-label">社群標籤曬娃數</span>
+                </div>
+              </div>
+              
+              <div class="cta-actions">
+                <button class="pop-btn btn-pink-pop" id="start-btn">
+                  <span>即刻解密簡報</span> <i class="fa-solid fa-circle-arrow-right"></i>
+                </button>
+                <a href="#pane-pdf" class="pop-btn btn-yellow-pop nav-trigger" data-target="pane-pdf">
+                  <span>閱讀 PDF 報告</span> <i class="fa-solid fa-file-arrow-down"></i>
+                </a>
+              </div>
+            </div>
+            
+            <div class="hero-visual">
+              <div class="pop-art-frame">
+                <img src="assets/keychain.png" alt="LABUBU Keychain" class="hero-keychain-img">
+                <div class="art-tag bg-pink">LISA 同款</div>
+                <div class="art-badge bg-yellow">熱銷 NO.1</div>
+                <div class="art-circle-deco"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- PANE 1: Persona Analysis -->
+        <section class="pane" id="pane-persona">
+          <div class="section-title-wrapper">
+            <h2 class="section-h2">誰是台灣 Z 世代？三大核心 Persona</h2>
+            <p class="section-p">他們生活在數位洪流中，不買房只買快樂，極度追求社群上的「社交貨幣」與「自我展現」。</p>
+          </div>
+          
+          <div class="persona-cards-container">
+            <!-- Persona 1 -->
+            <div class="persona-card card-pink-glow">
+              <div class="persona-header">
+                <div class="persona-avatar-circle bg-pink">婷</div>
+                <div class="persona-meta">
+                  <h3>曉婷 (21歲)</h3>
+                  <span class="p-tag bg-pink-light">大學生 • IG/Threads 重度使用者</span>
+                </div>
+              </div>
+              <div class="persona-body">
+                <div class="persona-quote">「看到 Lisa 掛在包包上，我也要拍張 OOTD 放 Threads 碎碎念！」</div>
+                <div class="persona-details">
+                  <div class="detail-item">
+                    <strong>消費痛點：</strong>
+                    <p>日常課業焦慮，害怕與朋友圈流行脫軌 (FOMO 焦慮症)。</p>
+                  </div>
+                  <div class="detail-item">
+                    <strong>LABUBU 吸引力：</strong>
+                    <p>盲盒開箱的賭博快感 + 超強的穿搭社交屬性，掛上立馬變社群焦點。</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Persona 2 -->
+            <div class="persona-card card-yellow-glow">
+              <div class="persona-header">
+                <div class="persona-avatar-circle bg-yellow">豪</div>
+                <div class="persona-meta">
+                  <h3>阿豪 (25歲)</h3>
+                  <span class="p-tag bg-yellow-light">初入職場新肝寶貝 • Dcard 板友</span>
+                </div>
+              </div>
+              <div class="persona-body">
+                <div class="persona-quote">「我買不起台北的房子，但我買得起辦公桌上的快樂！」</div>
+                <div class="persona-details">
+                  <div class="detail-item">
+                    <strong>消費痛點：</strong>
+                    <p>高房價與物價下的「精緻窮」代表，需要在瑣碎工作中獲得療癒。</p>
+                  </div>
+                  <div class="detail-item">
+                    <strong>LABUBU 吸引力：</strong>
+                    <p>桌上擺滿醜萌公仔，心情煩悶時捏一捏，提供無可替代的「情緒價值」。</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Persona 3 -->
+            <div class="persona-card card-cyan-glow">
+              <div class="persona-header">
+                <div class="persona-avatar-circle bg-cyan">莉</div>
+                <div class="persona-meta">
+                  <h3>莉莉 (28歲)</h3>
+                  <span class="p-tag bg-cyan-light">資深改娃玩家 • 潮流收藏家</span>
+                </div>
+              </div>
+              <div class="persona-body">
+                <div class="persona-quote">「普通的 LABUBU 不夠秋，自己改小衣服、換毛色才叫態度！」</div>
+                <div class="persona-details">
+                  <div class="detail-item">
+                    <strong>消費痛點：</strong>
+                    <p>不滿足於工廠流水線複製品，極力追求獨一無二的自我標籤。</p>
+                  </div>
+                  <div class="detail-item">
+                    <strong>LABUBU 吸引力：</strong>
+                    <p>極具改裝潛力（編織毛線帽、換鞋子、穿戴袖珍眼鏡），成了極佳的手作創作畫布。</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="extra-highlight-box bg-purple-light">
+            <h4><i class="fa-solid fa-lightbulb"></i> 關鍵 Z 世代共鳴字：【精緻窮】、【喪文化】、【Threads 廢文流】</h4>
+            <p>不要說教！不要用高高在上的姿態！Z 世代只會為符合他們當下心境（如擺爛、想發瘋、又愛面子）的醜萌 IP 付費。</p>
+          </div>
+        </section>
+
+        <!-- PANE 2: Why LABUBU Charm -->
+        <section class="pane" id="pane-charm">
+          <div class="section-title-wrapper">
+            <h2 class="section-h2">LABUBU 爆紅的三大超凡魅力基因</h2>
+            <p class="section-p">這隻長著九顆尖牙的精靈，是怎麼從一眾精緻娃娃中脫穎而出，成為現象級潮玩的？</p>
+          </div>
+          
+          <div class="charm-split-layout">
+            <div class="charm-text-column">
+              
+              <div class="charm-accordion-item active" data-index="0">
+                <div class="charm-acc-header">
+                  <span class="acc-num">01</span>
+                  <h3>藝術家龍家昇的「反差萌」設計</h3>
+                  <span class="acc-arrow"><i class="fa-solid fa-chevron-down"></i></span>
+                </div>
+                <div class="charm-acc-body">
+                  <p>LABUBU 擁有兩隻長長尖尖的耳朵、一排多達九顆的尖牙，看起來古怪調皮，性格卻善良淘氣。這種「醜萌、亦正亦邪」的反差，完美戳中了厭倦了虛假精緻的 Z 世代靈魂。</p>
+                </div>
+              </div>
+
+              <div class="charm-accordion-item" data-index="1">
+                <div class="charm-acc-header">
+                  <span class="acc-num">02</span>
+                  <h3>頂流 Lisa 帶貨的「野生代言」</h3>
+                  <span class="acc-arrow"><i class="fa-solid fa-chevron-down"></i></span>
+                </div>
+                <div class="charm-acc-body">
+                  <p>2024年，BLACKPINK 成員 Lisa 在 IG 連續曬出她抱著 LABUBU 巨型玩偶、包包上掛著 Tasty Macarons 馬卡龍系列吊飾的日常照，瞬間引爆全亞洲跟風，把一款小眾玩具推向主流潮流顛峰。</p>
+                </div>
+              </div>
+
+              <div class="charm-accordion-item" data-index="2">
+                <div class="charm-acc-header">
+                  <span class="acc-num">03</span>
+                  <h3>隨機盲盒經濟 + 限量飢餓行銷</h3>
+                  <span class="acc-arrow"><i class="fa-solid fa-chevron-down"></i></span>
+                </div>
+                <div class="charm-acc-body">
+                  <p>泡泡瑪特（POP MART）利用「盲盒」的隨機快感與極低機率的「隱藏款」，刺激用戶的收集強迫症；加上區域限定（如曼谷限定、東京限定），更增添了其社交炫耀價值。</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="charm-visual-column">
+              <div class="neo-polaroid">
+                <img src="assets/display.png" alt="Blind Box Shelf" id="charm-dynamic-img">
+                <p class="polaroid-caption"><i class="fa-solid fa-shop"></i> 實體門市的 LABUBU 盲盒牆：Z 世代排隊的瘋狂現場</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- PANE 3: Trend Charts -->
+        <section class="pane" id="pane-charts">
+          <div class="section-title-wrapper">
+            <h2 class="section-h2">Z 世代消費習慣與 LABUBU 社群趨勢數據</h2>
+            <p class="section-p">利用飽和配色與互動圖表，科學解密 Z 世代大腦中的消費權重分布。</p>
+          </div>
+          
+          <div class="charts-dashboard">
+            <!-- Chart Card 1 -->
+            <div class="chart-card glass-card">
+              <h3>💡 Z 世代消費動機：「情緒價值」買單分布</h3>
+              <div class="chart-wrapper">
+                <canvas id="chart-motivation"></canvas>
+              </div>
+              <p class="chart-caption">情緒陪伴與社交炫耀是他們花錢的第一驅動力。</p>
+            </div>
+
+            <!-- Chart Card 2 -->
+            <div class="chart-card glass-card">
+              <h3>📈 2024-2026 台灣三大社群 LABUBU 聲量趨勢</h3>
+              <div class="chart-wrapper">
+                <canvas id="chart-trend"></canvas>
+              </div>
+              <p class="chart-caption">Threads 在 2025 年起呈現爆發式增長，成為曬娃聖地。</p>
+            </div>
+
+            <!-- Chart Card 3 -->
+            <div class="chart-card glass-card">
+              <h3>📱 Z 世代資訊獲取主要渠道佔比</h3>
+              <div class="chart-wrapper">
+                <canvas id="chart-channels"></canvas>
+              </div>
+              <p class="chart-caption">短影音 Reels 與 Threads 心情文遠超傳統 Google 搜尋與FB。</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- PANE 4: Ad Videos Gallery -->
+        <section class="pane" id="pane-videos">
+          <div class="section-title-wrapper">
+            <h2 class="section-h2">🎬 專題特製廣告片播放清單</h2>
+            <p class="section-p">我們為 Z 世代量身定做了 4 支創意廣告片，精準切中【喪文化】、【精緻窮】與【Threads 潮流】痛點。點擊卡片即可切換播放！</p>
+          </div>
+
+          <div class="video-center-layout">
+            <!-- Video Player Window -->
+            <div class="video-player-window">
+              <div class="player-header">
+                <span class="player-dot dot-red"></span>
+                <span class="player-dot dot-yellow"></span>
+                <span class="player-dot dot-green"></span>
+                <span class="player-title" id="active-video-title">正在播放：廣告片一：【喪文化篇】——「讀書能改變命運，那誰來改變」</span>
+              </div>
+              <div class="video-container">
+                <video id="main-video-element" controls autoplay muted>
+                  <source src="🎬_廣告片一：【喪文化篇】——「讀書能改變命運，那誰來改變.mp4" type="video/mp4">
+                  您的瀏覽器不支援 HTML5 影片播放。
+                </video>
+              </div>
+            </div>
+
+            <!-- Video Playlist Sidebar -->
+            <div class="video-playlist-sidebar">
+              <h3>播放清單</h3>
+              <div class="playlist-items">
+                
+                <div class="playlist-item active" data-src="🎬_廣告片一：【喪文化篇】——「讀書能改變命運，那誰來改變.mp4" data-title="廣告片一：【喪文化篇】——「讀書能改變命運，那誰來改變」">
+                  <div class="item-icon"><i class="fa-solid fa-play"></i></div>
+                  <div class="item-text">
+                    <h4>🎬 廣告片一：【喪文化篇】</h4>
+                    <p>「讀書能改變命運，那誰來改變...」</p>
+                  </div>
+                </div>
+
+                <div class="playlist-item" data-src="廣告片二：【精緻窮篇】——「我買不起房，但我買得起快樂」_核.mp4" data-title="廣告片二：【精緻窮篇】——「我買不起房，但我買得起快樂」_核">
+                  <div class="item-icon"><i class="fa-solid fa-play"></i></div>
+                  <div class="item-text">
+                    <h4>🎬 廣告片二：【精緻窮篇】(核)</h4>
+                    <p>「我買不起房，但我買得起快樂！」</p>
+                  </div>
+                </div>
+
+                <div class="playlist-item" data-src="廣告片二：【精緻窮篇】——「我買不起房，但我買得起快樂」_核 (1).mp4" data-title="廣告片二：【精緻窮篇】——「我買不起房，但我買得起快樂」_核 (1)">
+                  <div class="item-icon"><i class="fa-solid fa-play"></i></div>
+                  <div class="item-text">
+                    <h4>🎬 廣告片二：【精緻窮篇】(1)</h4>
+                    <p>精緻窮概念片 (完整剪輯版本)</p>
+                  </div>
+                </div>
+
+                <div class="playlist-item" data-src="🎬_廣告片三：【Threads_潮流篇】——「包包不夠秋，.mp4" data-title="廣告片三：【Threads_潮流篇】——「包包不夠秋，」">
+                  <div class="item-icon"><i class="fa-solid fa-play"></i></div>
+                  <div class="item-text">
+                    <h4>🎬 廣告片三：【Threads_潮流篇】</h4>
+                    <p>「包包不夠秋，拉布布來湊！」</p>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- PANE 5: PDF View -->
+        <section class="pane" id="pane-pdf">
+          <div class="section-title-wrapper">
+            <h2 class="section-h2">📚 專題報告完整 PDF 文件檢視</h2>
+            <p class="section-p">以下是我們小組撰寫的 18MB 完整專題報告 PDF。您可以直接在網頁中滑動閱讀，或下載至本機查閱！</p>
+          </div>
+
+          <div class="pdf-viewer-card glass-card">
+            <div class="pdf-header">
+              <div class="pdf-icon"><i class="fa-solid fa-file-pdf"></i></div>
+              <div class="pdf-info">
+                <h3>LABUBU PDF.pdf</h3>
+                <p>檔案大小：18.0 MB • 完整行銷策略分析報告</p>
+              </div>
+              <a href="LABUBU PDF.pdf" download class="pop-btn btn-pink-pop pdf-download-btn">
+                <i class="fa-solid fa-download"></i> 下載 PDF
+              </a>
+            </div>
+            
+            <div class="pdf-frame-wrapper">
+              <iframe src="LABUBU PDF.pdf" class="pdf-iframe"></iframe>
+            </div>
+          </div>
+        </section>
+
+        <!-- PANE 6: Marketing Strategy -->
+        <section class="pane" id="pane-strategy">
+          <div class="section-title-wrapper">
+            <h2 class="section-h2">台灣在地行銷渠道與落地打法</h2>
+            <p class="section-p">如何利用台灣在地特有的社群與文化，把聲量轉化為源源不絕的「曬娃」裂變？</p>
+          </div>
+          
+          <div class="strategy-matrix">
+            <div class="strategy-box box-pink">
+              <div class="box-icon"><i class="fa-brands fa-threads"></i></div>
+              <h3>Threads 迷因話題製造</h3>
+              <p>利用 Threads 發起「#我的拉布布很瘋」挑戰。撰寫「廢話體、碎碎念」的 KOC 貼文，配上 LABUBU 的搞笑崩壞表情，引起演算法廣泛傳播。</p>
+            </div>
+
+            <div class="strategy-box box-yellow">
+              <div class="box-icon"><i class="fa-solid fa-palette"></i></div>
+              <h3>改娃手作穿搭 OOTD</h3>
+              <p>迎合 Z 世代「要搞怪、要特立獨行」的愛好。與台灣編織藝術家聯名，在泡泡瑪特西門旗艦店限時發售「迷你珍奶包」、「臭豆腐玩偶裝」等台灣味配件。</p>
+            </div>
+
+            <div class="strategy-box box-cyan">
+              <div class="box-icon"><i class="fa-solid fa-map-location-dot"></i></div>
+              <h3>線下街頭潮酷巡迴</h3>
+              <p>在台北信義香堤大道、台中草悟道打造 3 米高「巨型充氣 LABUBU 改娃展」。現場提供拍貼機與發瘋標語，吸引數萬名 Z 世代打卡上傳 Reels。</p>
+            </div>
+
+            <div class="strategy-box box-purple">
+              <div class="box-icon"><i class="fa-solid fa-user-shield"></i></div>
+              <h3>實名制抽籤防堵黃牛</h3>
+              <p>黃牛代排是傷害 Z 世代品牌忠誠度的最大殺手。實施 POP MART APP 綁定手機號碼與身分證末四碼抽選，並在 Threads 上透明公佈中籤率，贏得鐵粉信賴。</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- PANE 7: Interactive Workshop -->
+        <section class="pane" id="pane-interactive">
+          <div class="section-title-wrapper">
+            <h2 class="section-h2">🧠 小組互動工作坊 & 即時決策白板</h2>
+            <p class="section-p">本區資料皆即時存檔於您的瀏覽器！請留下您的創意點子便利貼，並對第一波主打商品策略進行模擬投票！</p>
+          </div>
+
+          <div class="workshop-grid">
+            
+            <!-- Whiteboard Column -->
+            <div class="whiteboard-card glass-card">
+              <h3><i class="fa-solid fa-chalkboard-user"></i> 創意便利貼白板</h3>
+              
+              <form id="note-form" class="note-form-grid">
+                <div class="form-group">
+                  <label for="author-name">成員名字</label>
+                  <input type="text" id="author-name" placeholder="例如：晓婷" required>
+                </div>
+                <div class="form-group">
+                  <label for="note-tag">點子分類</label>
+                  <select id="note-tag">
+                    <option value="marketing">💡 行銷手法</option>
+                    <option value="product">🧸 產品創意</option>
+                    <option value="risk">⚠️ 風險防範</option>
+                  </select>
+                </div>
+                <div class="form-group full-width">
+                  <label for="note-content">點子內容</label>
+                  <textarea id="note-content" placeholder="輸入你想跟組員分享的鬼點子..." rows="2" required></textarea>
+                </div>
+                <button type="submit" class="pop-btn btn-pink-pop full-width"><i class="fa-solid fa-plus"></i> 新增便利貼</button>
+              </form>
+
+              <div class="board-canvas" id="board-canvas">
+                <!-- Notes will populate here -->
+              </div>
+            </div>
+
+            <!-- Live Voting Column -->
+            <div class="voting-card glass-card">
+              <h3><i class="fa-solid fa-square-check"></i> 引流商品策略即時投票</h3>
+              <p class="voting-desc">你認為哪一種類型的 LABUBU 商品能為我們在台灣帶來最大聲量與實際引流？</p>
+              
+              <div class="voting-options-list">
+                <button class="vote-option-btn" data-id="0">
+                  <span class="opt-text">1. 毛絨公仔吊飾 ( Lisa 穿搭改娃款 )</span>
+                  <span class="opt-count" id="count-0">0 票</span>
+                </button>
+                <button class="vote-option-btn" data-id="1">
+                  <span class="opt-text">2. 經典盲盒系列 ( 辦公桌療癒神物 )</span>
+                  <span class="opt-count" id="count-1">0 票</span>
+                </button>
+                <button class="vote-option-btn" data-id="2">
+                  <span class="opt-text">3. MEGA 400% 潮玩 ( 居家高調藝術擺設 )</span>
+                  <span class="opt-count" id="count-2">0 票</span>
+                </button>
+              </div>
+
+              <!-- Canvas for Live Rendered Chart.js -->
+              <div class="voting-chart-container">
+                <canvas id="live-voting-chart"></canvas>
+              </div>
+              
+              <button id="clear-data-btn" class="clear-data-btn"><i class="fa-solid fa-trash-can"></i> 重置所有工作坊資料</button>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- PANE 8: Timeline & Action -->
+        <section class="pane" id="pane-timeline">
+          <div class="section-title-wrapper">
+            <h2 class="section-h2">行銷執行時程規劃 (6個月)</h2>
+            <p class="section-p">有條不紊的節奏，將短期的社群爆紅轉化為品牌在台灣長期的忠誠擁護。</p>
+          </div>
+
+          <div class="timeline-tree">
+            
+            <div class="tree-item item-pink">
+              <div class="tree-badge">Month 1-2</div>
+              <div class="tree-card">
+                <h3>社群鋪底與 KOC 改娃裂變</h3>
+                <p>大範圍派發馬卡龍吊飾給 50 位 Threads 語錄體網紅與小紅書、IG 穿搭 KOC。發起「#我的LABUBU穿搭」話題，讓公仔吊飾成為包包標配。</p>
+              </div>
+            </div>
+
+            <div class="tree-item item-yellow">
+              <div class="tree-badge">Month 3-4</div>
+              <div class="tree-card">
+                <h3>快閃聯名手作坊與在地限定款</h3>
+                <p>於台北華山或誠品開設「LABUBU DIY 改娃小衣服工作坊」。與台灣手搖飲大牌（如 50嵐、得正）進行包材或贈品聯名，觸及泛大眾客群。</p>
+              </div>
+            </div>
+
+            <div class="tree-item item-cyan">
+              <div class="tree-badge">Month 5-6</div>
+              <div class="tree-card">
+                <h3>實名防牛系統上線與鐵粉深耕</h3>
+                <p>全面啟用 POP MART APP 的身分認證預約購買機制，保障核心玩家權益。提供改娃大賽得獎者「限定公仔購買特權」，固化核心潮流粉絲圈。</p>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="conclusion-banner">
+            <div class="conclusion-emoji">🎓</div>
+            <div class="conclusion-text">
+              <h3>小組期末總結</h3>
+              <p>台灣 Z 世代追求的不再是單純的物件實用性，而是隨之而來的「情緒價值」與「社交貨幣」。我們以 LABUBU 為核心的行銷推廣策略，緊扣住新世代<strong>【喪文化】</strong>的自我解嘲、<strong>【精緻窮】</strong>的即時享樂以及在<strong>【Threads】</strong>的廢文社交。透過小吊飾的穿搭高能見度，拉動盲盒盲抽的長期複購，正是我們此次提案的核心勝出點！</p>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </main>
+
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
