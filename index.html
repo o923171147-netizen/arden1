@@ -17,6 +17,327 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   
   <link rel="stylesheet" href="styles.css">
+
+
+  <!-- 手機版修正：讓電腦與手機都正常顯示 -->
+  <style id="mobile-responsive-fix">
+    * { box-sizing: border-box; }
+    html, body { width: 100%; max-width: 100%; overflow-x: hidden; }
+    img, video, iframe, canvas { max-width: 100%; }
+    .pane:not(.active) { display: none; }
+    .pane.active { display: block; }
+    .loader-wrapper.hide { opacity: 0; pointer-events: none; visibility: hidden; transition: opacity .35s ease, visibility .35s ease; }
+
+    @media (max-width: 900px) {
+      body.mobile-nav-open { overflow: hidden; }
+      body.mobile-nav-open::after {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, .45);
+        z-index: 9998;
+      }
+
+      .app-container {
+        display: block !important;
+        width: 100% !important;
+        min-height: 100dvh;
+      }
+
+      .sidebar {
+        position: fixed !important;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: min(84vw, 340px) !important;
+        height: 100dvh !important;
+        max-height: 100dvh !important;
+        overflow-y: auto !important;
+        z-index: 9999;
+        transform: translateX(-110%);
+        transition: transform .28s ease;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      body.mobile-nav-open .sidebar {
+        transform: translateX(0);
+      }
+
+      .sidebar-header,
+      .sidebar-footer {
+        padding-left: 18px !important;
+        padding-right: 18px !important;
+      }
+
+      .nav-menu {
+        max-height: none !important;
+        overflow: visible !important;
+        padding: 0 14px 18px !important;
+      }
+
+      .nav-item {
+        width: 100% !important;
+        min-height: 54px;
+        white-space: normal !important;
+        text-align: left;
+      }
+
+      .main-content {
+        width: 100% !important;
+        min-width: 0 !important;
+        margin-left: 0 !important;
+      }
+
+      .top-bar {
+        position: sticky !important;
+        top: 0;
+        z-index: 5000;
+        width: 100% !important;
+        min-height: 58px;
+        padding: 10px 12px !important;
+        gap: 8px;
+      }
+
+      .menu-toggle-btn {
+        display: inline-flex !important;
+        align-items: center;
+        justify-content: center;
+        width: 42px;
+        height: 42px;
+        flex: 0 0 auto;
+      }
+
+      .header-left,
+      .header-right {
+        min-width: 0;
+      }
+
+      .topic-indicator {
+        min-width: 0;
+      }
+
+      .topic-text {
+        display: inline-block;
+        max-width: 45vw;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+
+      .online-pill {
+        display: none !important;
+      }
+
+      .theme-btn {
+        min-width: 42px !important;
+        padding: 8px 10px !important;
+      }
+
+      .theme-btn-text {
+        display: none !important;
+      }
+
+      .panes-container {
+        width: 100% !important;
+        height: auto !important;
+        min-height: calc(100dvh - 58px);
+        overflow: visible !important;
+        padding: 14px !important;
+      }
+
+      .pane {
+        width: 100% !important;
+        min-width: 0 !important;
+        padding: 0 !important;
+      }
+
+      .section-title-wrapper {
+        margin-bottom: 18px !important;
+      }
+
+      .section-h2 {
+        font-size: clamp(1.55rem, 7vw, 2.35rem) !important;
+        line-height: 1.2 !important;
+      }
+
+      .section-p,
+      .hero-para,
+      p {
+        font-size: 16px !important;
+        line-height: 1.65 !important;
+      }
+
+      .cover-hero,
+      .charm-split-layout,
+      .video-center-layout,
+      .workshop-grid {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        gap: 18px !important;
+        width: 100% !important;
+      }
+
+      .hero-content,
+      .hero-visual,
+      .charm-text-column,
+      .charm-visual-column,
+      .video-player-window,
+      .video-playlist-sidebar,
+      .whiteboard-card,
+      .voting-card {
+        width: 100% !important;
+        min-width: 0 !important;
+      }
+
+      .hero-headline {
+        font-size: clamp(2.05rem, 11vw, 3.1rem) !important;
+        line-height: 1.08 !important;
+        word-break: keep-all;
+      }
+
+      .hero-stats-grid,
+      .persona-cards-container,
+      .charts-dashboard,
+      .strategy-matrix {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        gap: 14px !important;
+      }
+
+      .stat-bubble,
+      .persona-card,
+      .chart-card,
+      .strategy-box,
+      .glass-card,
+      .tree-card,
+      .conclusion-banner,
+      .extra-highlight-box {
+        width: 100% !important;
+        max-width: 100% !important;
+      }
+
+      .cta-actions {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        gap: 12px !important;
+      }
+
+      .pop-btn {
+        width: 100% !important;
+        justify-content: center !important;
+        text-align: center;
+      }
+
+      .pop-art-frame,
+      .neo-polaroid {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 auto !important;
+      }
+
+      .hero-keychain-img,
+      .neo-polaroid img {
+        width: 100% !important;
+        height: auto !important;
+        object-fit: contain !important;
+      }
+
+      .video-container {
+        width: 100% !important;
+        overflow: hidden !important;
+      }
+
+      .video-container video,
+      #main-video-element {
+        width: 100% !important;
+        height: auto !important;
+        display: block;
+      }
+
+      .playlist-item {
+        width: 100% !important;
+      }
+
+      .pdf-header {
+        display: grid !important;
+        grid-template-columns: auto 1fr !important;
+        gap: 12px !important;
+        align-items: center !important;
+      }
+
+      .pdf-download-btn {
+        grid-column: 1 / -1;
+      }
+
+      .pdf-frame-wrapper {
+        width: 100% !important;
+        height: 70dvh !important;
+        overflow: hidden !important;
+      }
+
+      .pdf-iframe {
+        width: 100% !important;
+        height: 100% !important;
+        border: 0 !important;
+      }
+
+      .pdf-mobile-notice {
+        width: 100% !important;
+        padding: 20px !important;
+        border: 3px solid #111 !important;
+        border-radius: 18px !important;
+        background: #fff8b8 !important;
+        box-shadow: 6px 6px 0 #111 !important;
+        text-align: center !important;
+      }
+
+      .pdf-mobile-actions {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        gap: 12px !important;
+        justify-content: center !important;
+        margin-top: 14px !important;
+      }
+
+      @media screen and (max-width: 768px) {
+        .pdf-frame-wrapper {
+          height: auto !important;
+          min-height: 0 !important;
+          padding: 12px !important;
+        }
+
+        .pdf-iframe {
+          display: none !important;
+        }
+      }
+
+      @media screen and (min-width: 769px) {
+        .pdf-mobile-notice {
+          display: none !important;
+        }
+      }
+
+      .timeline-tree {
+        width: 100% !important;
+      }
+
+      .tree-item {
+        display: block !important;
+        width: 100% !important;
+        margin-bottom: 18px !important;
+      }
+
+      .note-form-grid {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+      }
+
+      input, select, textarea, button {
+        max-width: 100%;
+      }
+    }
+  </style>
+
 </head>
 <body class="candy-pop-theme">
   
@@ -435,7 +756,19 @@
             </div>
             
             <div class="pdf-frame-wrapper">
-              <iframe src="LABUBU PDF.pdf" class="pdf-iframe"></iframe>
+              <div class="pdf-mobile-notice">
+                <h3>手機版已關閉自動 PDF 預覽</h3>
+                <p>為了避免手機瀏覽器一進網頁就跳到 PDF，手機版不會自動載入 PDF。需要看完整報告時，請按下方按鈕另開或下載。</p>
+                <div class="pdf-mobile-actions">
+                  <a href="LABUBU PDF.pdf" target="_blank" rel="noopener" class="pop-btn btn-yellow-pop">
+                    <i class="fa-solid fa-up-right-from-square"></i> 開啟 PDF
+                  </a>
+                  <a href="LABUBU PDF.pdf" download class="pop-btn btn-pink-pop">
+                    <i class="fa-solid fa-download"></i> 下載 PDF
+                  </a>
+                </div>
+              </div>
+              <iframe data-src="LABUBU PDF.pdf" class="pdf-iframe" title="LABUBU PDF 預覽"></iframe>
             </div>
           </div>
         </section>
@@ -593,5 +926,167 @@
   </div>
 
   <script src="app.js"></script>
+
+  <!-- 手機選單與分頁保險 JS：避免手機版點選單無反應 -->
+  <script id="mobile-responsive-fix-script">
+    (function () {
+      function ready(fn) {
+        if (document.readyState !== 'loading') fn();
+        else document.addEventListener('DOMContentLoaded', fn);
+      }
+
+      ready(function () {
+        var body = document.body;
+        var menuBtn = document.getElementById('mobile-menu-btn');
+        var sidebar = document.querySelector('.sidebar');
+        var loader = document.getElementById('page-loader');
+        var titleText = document.getElementById('current-pane-title');
+        var startBtn = document.getElementById('start-btn');
+
+        function hideLoader() {
+          if (!loader) return;
+          loader.classList.add('hide');
+          setTimeout(function () { loader.style.display = 'none'; }, 420);
+        }
+        window.addEventListener('load', function () { setTimeout(hideLoader, 500); });
+        setTimeout(hideLoader, 1800);
+
+        function closeMenu() {
+          body.classList.remove('mobile-nav-open');
+        }
+
+        function openMenu() {
+          body.classList.add('mobile-nav-open');
+        }
+
+        if (menuBtn) {
+          menuBtn.addEventListener('click', function (event) {
+            event.preventDefault();
+            event.stopPropagation();
+            body.classList.toggle('mobile-nav-open');
+          });
+        }
+
+        document.addEventListener('click', function (event) {
+          if (!body.classList.contains('mobile-nav-open')) return;
+          if (sidebar && sidebar.contains(event.target)) return;
+          if (menuBtn && menuBtn.contains(event.target)) return;
+          closeMenu();
+        });
+
+        document.addEventListener('keydown', function (event) {
+          if (event.key === 'Escape') closeMenu();
+        });
+
+        function switchPane(targetId) {
+          if (!targetId) return;
+          var targetPane = document.getElementById(targetId);
+          if (!targetPane) return;
+
+          document.querySelectorAll('.pane').forEach(function (pane) {
+            pane.classList.toggle('active', pane.id === targetId);
+          });
+
+          document.querySelectorAll('.nav-item').forEach(function (item) {
+            item.classList.toggle('active', item.dataset.target === targetId);
+            if (item.dataset.target === targetId && titleText) {
+              var label = item.querySelector('.nav-label');
+              titleText.textContent = label ? label.textContent.trim() : titleText.textContent;
+            }
+          });
+
+          var panesContainer = document.querySelector('.panes-container');
+          if (panesContainer) panesContainer.scrollTo({ top: 0, behavior: 'smooth' });
+          closeMenu();
+        }
+
+        document.querySelectorAll('[data-target]').forEach(function (trigger) {
+          trigger.addEventListener('click', function (event) {
+            var target = trigger.dataset.target;
+            if (target) {
+              event.preventDefault();
+              switchPane(target);
+              history.replaceState(null, '', '#' + target);
+            }
+          });
+        });
+
+        if (startBtn) {
+          startBtn.addEventListener('click', function () {
+            switchPane('pane-persona');
+            history.replaceState(null, '', '#pane-persona');
+          });
+        }
+
+        if (location.hash && document.querySelector(location.hash)) {
+          switchPane(location.hash.slice(1));
+        }
+
+        document.querySelectorAll('.playlist-item').forEach(function (item) {
+          item.addEventListener('click', function () {
+            var video = document.getElementById('main-video-element');
+            var title = document.getElementById('active-video-title');
+            var src = item.dataset.src;
+            if (video && src) {
+              video.src = src;
+              video.load();
+              video.play().catch(function () {});
+            }
+            if (title && item.dataset.title) title.textContent = '正在播放：' + item.dataset.title;
+            document.querySelectorAll('.playlist-item').forEach(function (i) { i.classList.remove('active'); });
+            item.classList.add('active');
+          });
+        });
+      });
+    })();
+  </script>
+
+
+  <!-- PDF 手機防跳轉：手機不自動載入 iframe，桌機進入 PDF 分頁才載入 -->
+  <script id="pdf-mobile-no-jump-script">
+    (function () {
+      function ready(fn) {
+        if (document.readyState !== 'loading') fn();
+        else document.addEventListener('DOMContentLoaded', fn);
+      }
+
+      ready(function () {
+        var iframe = document.querySelector('.pdf-iframe');
+        if (!iframe) return;
+
+        function isMobileWidth() {
+          return window.matchMedia && window.matchMedia('(max-width: 768px)').matches;
+        }
+
+        function updatePdfPreview() {
+          if (isMobileWidth()) {
+            iframe.removeAttribute('src');
+            return;
+          }
+
+          var pdfPane = document.getElementById('pane-pdf');
+          var shouldLoad = pdfPane && pdfPane.classList.contains('active');
+          var src = iframe.getAttribute('data-src');
+          if (shouldLoad && src && !iframe.getAttribute('src')) {
+            iframe.setAttribute('src', src);
+          }
+        }
+
+        iframe.removeAttribute('src');
+        updatePdfPreview();
+
+        document.addEventListener('click', function (event) {
+          if (event.target.closest && event.target.closest('[data-target="pane-pdf"]')) {
+            setTimeout(updatePdfPreview, 80);
+          }
+        });
+
+        window.addEventListener('hashchange', updatePdfPreview);
+        window.addEventListener('resize', updatePdfPreview);
+        setInterval(updatePdfPreview, 1500);
+      });
+    })();
+  </script>
+
 </body>
 </html>
