@@ -338,6 +338,89 @@
     }
   </style>
 
+
+
+  <!-- 手機影片清單修正：避免手機只看到第一支影片，播放清單被擠到右邊或隱藏 -->
+  <style id="video-mobile-playlist-fix">
+    @media screen and (max-width: 900px) {
+      #pane-videos,
+      #pane-videos .video-center-layout,
+      #pane-videos .video-player-window,
+      #pane-videos .video-playlist-sidebar,
+      #pane-videos .playlist-items {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+        overflow: visible !important;
+      }
+
+      #pane-videos .video-center-layout {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 16px !important;
+      }
+
+      #pane-videos .video-playlist-sidebar {
+        display: block !important;
+        position: relative !important;
+        left: auto !important;
+        right: auto !important;
+        top: auto !important;
+        bottom: auto !important;
+        height: auto !important;
+        max-height: none !important;
+        transform: none !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        margin-top: 12px !important;
+      }
+
+      #pane-videos .playlist-items {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 12px !important;
+        height: auto !important;
+        max-height: none !important;
+      }
+
+      #pane-videos .playlist-item {
+        display: flex !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        min-height: 76px !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        cursor: pointer !important;
+        touch-action: manipulation !important;
+      }
+
+      #pane-videos .item-text {
+        min-width: 0 !important;
+      }
+
+      #pane-videos .item-text h4,
+      #pane-videos .item-text p,
+      #active-video-title {
+        white-space: normal !important;
+        overflow: visible !important;
+        text-overflow: clip !important;
+        word-break: break-word !important;
+      }
+
+      #pane-videos .video-container,
+      #pane-videos #main-video-element {
+        width: 100% !important;
+        max-width: 100% !important;
+      }
+
+      #pane-videos #main-video-element {
+        display: block !important;
+        height: auto !important;
+        max-height: 62vh !important;
+      }
+    }
+  </style>
+
 </head>
 <body class="candy-pop-theme">
   
@@ -687,7 +770,7 @@
                 <span class="player-title" id="active-video-title">正在播放：廣告片一：【喪文化篇】——「讀書能改變命運，那誰來改變」</span>
               </div>
               <div class="video-container">
-                <video id="main-video-element" controls autoplay muted>
+                <video id="main-video-element" controls muted playsinline webkit-playsinline preload="metadata">
                   <source src="🎬_廣告片一：【喪文化篇】——「讀書能改變命運，那誰來改變.mp4" type="video/mp4">
                   您的瀏覽器不支援 HTML5 影片播放。
                 </video>
@@ -729,6 +812,15 @@
                     <h4>🎬 廣告片三：【Threads_潮流篇】</h4>
                     <p>「包包不夠秋，拉布布來湊！」</p>
                   </div>
+                </div>
+
+
+                <div class="mobile-video-direct-links" style="display:block; margin-top:12px; font-size:14px; line-height:1.7;">
+                  <strong>手機無法切換時，請直接開影片：</strong><br>
+                  <a href="🎬_廣告片一：【喪文化篇】——「讀書能改變命運，那誰來改變.mp4" target="_blank" rel="noopener">影片 1</a> ｜
+                  <a href="廣告片二：【精緻窮篇】——「我買不起房，但我買得起快樂」_核.mp4" target="_blank" rel="noopener">影片 2</a> ｜
+                  <a href="廣告片二：【精緻窮篇】——「我買不起房，但我買得起快樂」_核 (1).mp4" target="_blank" rel="noopener">影片 3</a> ｜
+                  <a href="🎬_廣告片三：【Threads_潮流篇】——「包包不夠秋，.mp4" target="_blank" rel="noopener">影片 4</a>
                 </div>
 
               </div>
@@ -1084,6 +1176,56 @@
         window.addEventListener('hashchange', updatePdfPreview);
         window.addEventListener('resize', updatePdfPreview);
         setInterval(updatePdfPreview, 1500);
+      });
+    })();
+  </script>
+
+
+
+  <!-- 手機影片播放保險 JS：讓 4 支播放清單都能點選切換 -->
+  <script id="video-mobile-playlist-fix-script">
+    (function () {
+      function ready(fn) {
+        if (document.readyState !== 'loading') fn();
+        else document.addEventListener('DOMContentLoaded', fn);
+      }
+
+      ready(function () {
+        var video = document.getElementById('main-video-element');
+        var title = document.getElementById('active-video-title');
+        var items = Array.prototype.slice.call(document.querySelectorAll('#pane-videos .playlist-item'));
+
+        if (video) {
+          video.setAttribute('playsinline', '');
+          video.setAttribute('webkit-playsinline', '');
+          video.setAttribute('preload', 'metadata');
+          video.removeAttribute('autoplay');
+        }
+
+        items.forEach(function (item) {
+          item.style.display = 'flex';
+          item.addEventListener('click', function (event) {
+            event.preventDefault();
+            var src = item.getAttribute('data-src');
+            if (!video || !src) return;
+
+            var source = video.querySelector('source');
+            if (source) source.setAttribute('src', src);
+            video.setAttribute('src', src);
+            video.load();
+
+            if (title && item.getAttribute('data-title')) {
+              title.textContent = '正在播放：' + item.getAttribute('data-title');
+            }
+
+            items.forEach(function (el) { el.classList.remove('active'); });
+            item.classList.add('active');
+
+            video.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            var playResult = video.play();
+            if (playResult && playResult.catch) playResult.catch(function () {});
+          });
+        });
       });
     })();
   </script>
